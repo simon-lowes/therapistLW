@@ -209,6 +209,47 @@
         color: var(--color-white);
       }
 
+      /* Contact Section Background */
+      #contact {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #contact::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('images/n/img_7234-1200.jpg');
+        background-image: image-set(
+          url('images/a/img_7234-1200.webp') 1x,
+          url('images/j/img_7234-2000.webp') 2x
+        );
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+        z-index: 0;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 0%,
+          black 0.5%,
+          black 99.5%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 0%,
+          black 0.5%,
+          black 99.5%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+      }
+
+      #contact > .container {
+        position: relative;
+        z-index: 1;
+      }
+
       .text-center {
         text-align: center;
       }
@@ -413,9 +454,8 @@
         inset: 0;
         background-image: url('images/r/img_8172-1200.jpg');
         background-image: image-set(
-          url('images/r/img_8172-400.webp') 1x,
-          url('images/r/img_8172-800.webp') 2x,
-          url('images/r/img_8172-1200.webp') 3x
+          url('images/r/img_8172-1600.webp') 1x,
+          url('images/r/img_8172-1600.webp') 2x
         );
         background-position: center;
         background-size: cover;
@@ -497,6 +537,47 @@
       /* ========================================
        About Section
        ======================================== */
+      #about {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--color-cream);
+      }
+
+      #about::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('images/p/img_7424-400.jpg');
+        background-image: image-set(
+          url('images/j/img_7424-1200.webp') 1x,
+          url('images/2/img_7424-2560.webp') 2x
+        );
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.25;
+        z-index: 0;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 0%,
+          black 0.5%,
+          black 99.5%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 0%,
+          black 0.5%,
+          black 99.5%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+      }
+
+      #about > .container {
+        position: relative;
+        z-index: 1;
+      }
+
       .about__grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
@@ -567,6 +648,47 @@
       /* ========================================
        Services / Sessions Section
        ======================================== */
+      #sessions {
+        position: relative;
+        overflow: hidden;
+      }
+
+      #sessions::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('images/a/sackhouse-1200.jpg');
+        background-image: image-set(
+          url('images/l/sackhouse-1200.webp') 1x,
+          url('images/l/sackhouse-2000.webp') 2x
+        );
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.3;
+        filter: brightness(0.85);
+        z-index: 0;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 0%,
+          black 0.5%,
+          black 99.5%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.7) 0%,
+          black 0.5%,
+          black 99.5%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+      }
+
+      #sessions > .container {
+        position: relative;
+        z-index: 1;
+      }
+
       .services__intro {
         max-width: 800px;
         margin: 0 auto 3rem;
@@ -758,6 +880,7 @@
 
       .contact__form-wrapper {
         background: var(--color-white);
+        color: var(--color-text);
         padding: 2.5rem;
         border-radius: 8px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -994,7 +1117,7 @@
          ======================================== */
       .skip-link {
         position: absolute;
-        top: -40px;
+        top: -100px;
         left: 6px;
         background: var(--color-primary);
         color: var(--color-white);
@@ -1004,10 +1127,14 @@
         border-radius: 4px;
         font-weight: 600;
         transition: top var(--transition);
+        clip: rect(0, 0, 0, 0);
+        overflow: hidden;
       }
 
       .skip-link:focus {
         top: 6px;
+        clip: auto;
+        overflow: visible;
       }
     </style>
   </head>
@@ -1081,9 +1208,11 @@
         <div class="hero__content">
           <div class="hero__badge">
             <img
-              src="images/2/bacp-logo-402586-152.jpg"
+              src="images/r/bacp-logo-402586-304.jpg"
               alt="BACP Registered Member"
               class="hero__badge-img"
+              width="152"
+              height="68"
             />
           </div>
 
@@ -1112,11 +1241,25 @@
         <div class="container">
           <div class="about__grid">
             <div class="about__image">
-              <img
-                src="images/p/img_7424-400.jpg"
-                alt="Lisa Wheeler, Psychotherapeutic Counsellor"
-                loading="lazy"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="images/e/img_8140-400.webp 400w"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                />
+                <img
+                  src="images/l/img_8140-400.jpg"
+                  srcset="
+                    images/p/img_8140-200.jpg 200w,
+                    images/l/img_8140-400.jpg 400w
+                  "
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  alt="Lisa Wheeler, Psychotherapeutic Counsellor"
+                  loading="lazy"
+                  width="400"
+                  height="533"
+                />
+              </picture>
             </div>
 
             <div class="about__content">
@@ -1618,7 +1761,12 @@
       <div class="footer__bottom">
         <p>&copy; 2025 Lisa Wheeler Counselling. All rights reserved.</p>
         <div class="footer__badges">
-          <img src="images/2/bacp-logo-402586-152.jpg" alt="BACP Registered" />
+          <img
+            src="images/r/bacp-logo-402586-304.jpg"
+            alt="BACP Registered"
+            width="152"
+            height="68"
+          />
         </div>
       </div>
     </footer>
