@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://www.lisawheelercounselling.co.uk/sitemap.xml
+Sitemap: https://www.lisawheelercounselling.co.uk/sitemap.xml

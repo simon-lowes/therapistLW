@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
     <title>Lisa Wheeler | Psychotherapeutic Counsellor</title>
     <meta
       name="description"
@@ -11,13 +14,46 @@
     <meta name="robots" content="max-image-preview:large" />
     <link rel="canonical" href="https://www.lisawheelercounselling.co.uk/" />
 
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Lisa Wheeler Counselling",
+        "description": "Psychotherapeutic Counselling and Clinical Supervision",
+        "url": "https://www.lisawheelercounselling.co.uk/",
+        "telephone": "+44-7721-936887",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wells-next-the-Sea",
+          "addressRegion": "Norfolk",
+          "addressCountry": "UK"
+        },
+        "serviceType": ["Psychotherapy", "Counselling", "Clinical Supervision"],
+        "provider": {
+          "@type": "Person",
+          "name": "Lisa Wheeler",
+          "jobTitle": "Psychotherapeutic Counsellor",
+          "qualification": "BACP Registered"
+        }
+      }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <style>
       /* ========================================
@@ -29,14 +65,23 @@
         --color-accent: #83995e;
         --color-accent-dark: #6b7f4d;
         --color-text: #333;
-        --color-text-light: #666;
+        --color-text-light: #555; /* Improved contrast from #666 */
         --color-white: #fff;
         --color-cream: #f9f7f4;
-        --color-border: #e0e0e0;
+        --color-border: #ccc; /* Improved visibility from #e0e0e0 */
 
         --font-heading: 'Playfair Display', Georgia, serif;
         --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI',
           sans-serif;
+
+        /* Fluid Typography Scale */
+        --font-size-sm: clamp(0.875rem, 2vw, 0.9375rem);
+        --font-size-base: clamp(1rem, 2.5vw, 1.125rem);
+        --font-size-lg: clamp(1.125rem, 3vw, 1.25rem);
+        --font-size-xl: clamp(1.25rem, 4vw, 1.5rem);
+        --font-size-2xl: clamp(1.5rem, 5vw, 2rem);
+        --font-size-3xl: clamp(2rem, 6vw, 2.75rem);
+        --font-size-4xl: clamp(2.5rem, 8vw, 4rem);
 
         --max-width: 1200px;
         --section-padding: 5rem 1.5rem;
@@ -61,7 +106,7 @@
 
       body {
         font-family: var(--font-body);
-        font-size: 1rem;
+        font-size: var(--font-size-base);
         line-height: 1.7;
         color: var(--color-text);
         background-color: var(--color-white);
@@ -99,16 +144,16 @@
       }
 
       h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-size: var(--font-size-4xl);
       }
 
       h2 {
-        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-size: var(--font-size-3xl);
         margin-bottom: 1.5rem;
       }
 
       h3 {
-        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        font-size: var(--font-size-xl);
         margin-bottom: 1rem;
       }
 
@@ -121,7 +166,7 @@
       }
 
       .lead {
-        font-size: 1.125rem;
+        font-size: var(--font-size-lg);
         color: var(--color-text-light);
       }
 
@@ -129,9 +174,21 @@
        Layout Utilities
        ======================================== */
       .container {
-        max-width: var(--max-width);
+        max-width: min(var(--max-width), 100% - 2rem);
         margin: 0 auto;
-        padding: 0 1.5rem;
+        padding: 0 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 1.5rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .container {
+          padding: 0 2rem;
+        }
       }
 
       .section {
@@ -323,6 +380,7 @@
       .hero {
         position: relative;
         min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport height for mobile */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -333,15 +391,43 @@
         );
         color: var(--color-white);
         text-align: center;
-        padding: 8rem 1.5rem 5rem;
+        padding: max(8rem, 20vh) 1.5rem 5rem;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: max(6rem, 15vh) 1rem 3rem;
+        }
+      }
+
+      @media (max-width: 480px) and (orientation: landscape) {
+        .hero {
+          min-height: auto;
+          padding: 6rem 1rem 3rem;
+        }
       }
 
       .hero::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: url('images/r/img_8172-1200.jpg') center/cover no-repeat;
+        background-image: url('images/r/img_8172-1200.jpg');
+        background-image: image-set(
+          url('images/r/img_8172-400.webp') 1x,
+          url('images/r/img_8172-800.webp') 2x,
+          url('images/r/img_8172-1200.webp') 3x
+        );
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
         opacity: 0.15;
+      }
+
+      /* Fallback for older browsers */
+      @supports not (background-image: image-set(url('test.webp') 1x)) {
+        .hero::before {
+          background-image: url('images/r/img_8172-1200.jpg');
+        }
       }
 
       .hero__content {
@@ -413,15 +499,14 @@
        ======================================== */
       .about__grid {
         display: grid;
-        grid-template-columns: 1fr 1.5fr;
-        gap: 4rem;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: clamp(1.5rem, 4vw, 4rem);
         align-items: center;
       }
 
-      @media (max-width: 768px) {
+      @media (min-width: 768px) {
         .about__grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
+          grid-template-columns: 1fr 1.5fr;
         }
       }
 
@@ -490,8 +575,8 @@
 
       .services__grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+        gap: clamp(1.5rem, 4vw, 2rem);
         margin-bottom: 3rem;
       }
 
@@ -637,15 +722,8 @@
        ======================================== */
       .contact__grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-      }
-
-      @media (max-width: 768px) {
-        .contact__grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
+        grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+        gap: clamp(1.5rem, 4vw, 4rem);
       }
 
       .contact__info h2 {
@@ -728,6 +806,28 @@
         width: 100%;
         padding: 1rem;
         font-size: 1rem;
+      }
+
+      .form-error {
+        color: #c0392b;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        min-height: 1.25rem;
+      }
+
+      .form-status {
+        text-align: center;
+        margin-top: 1rem;
+        font-weight: 500;
+      }
+
+      .required {
+        color: #c0392b;
+      }
+
+      .form-input.error,
+      .form-textarea.error {
+        border-color: #c0392b;
       }
 
       /* ========================================
@@ -888,13 +988,37 @@
         background: var(--color-primary-dark);
         transform: translateY(-3px);
       }
+
+      /* ========================================
+         Skip Link (Accessibility)
+         ======================================== */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 8px 16px;
+        z-index: 100000;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: top var(--transition);
+      }
+
+      .skip-link:focus {
+        top: 6px;
+      }
     </style>
   </head>
   <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- ========================================
        Header / Navigation
        ======================================== -->
-    <header class="header" id="header">
+    <header class="header" id="header" role="banner">
       <div class="header__inner">
         <a href="#home" class="header__logo">
           <img
@@ -908,28 +1032,48 @@
         <button
           class="nav-toggle"
           id="nav-toggle"
-          aria-label="Toggle navigation"
+          aria-label="Toggle navigation menu"
           aria-expanded="false"
+          aria-controls="nav"
         >
           <span class="nav-toggle__bar"></span>
           <span class="nav-toggle__bar"></span>
           <span class="nav-toggle__bar"></span>
         </button>
 
-        <nav class="nav" id="nav">
-          <ul class="nav__list">
-            <li><a href="#home" class="nav__link">Home</a></li>
-            <li><a href="#about" class="nav__link">About</a></li>
-            <li><a href="#sessions" class="nav__link">Sessions</a></li>
-            <li><a href="#supervision" class="nav__link">Supervision</a></li>
-            <li><a href="#contact" class="nav__link">Contact</a></li>
-            <li><a href="#privacy" class="nav__link">Privacy</a></li>
+        <nav
+          class="nav"
+          id="nav"
+          role="navigation"
+          aria-label="Main navigation"
+        >
+          <ul class="nav__list" role="menubar">
+            <li role="none">
+              <a href="#home" class="nav__link" role="menuitem">Home</a>
+            </li>
+            <li role="none">
+              <a href="#about" class="nav__link" role="menuitem">About</a>
+            </li>
+            <li role="none">
+              <a href="#sessions" class="nav__link" role="menuitem">Sessions</a>
+            </li>
+            <li role="none">
+              <a href="#supervision" class="nav__link" role="menuitem"
+                >Supervision</a
+              >
+            </li>
+            <li role="none">
+              <a href="#contact" class="nav__link" role="menuitem">Contact</a>
+            </li>
+            <li role="none">
+              <a href="#privacy" class="nav__link" role="menuitem">Privacy</a>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main>
+    <main id="main-content" role="main">
       <!-- ========================================
          Hero Section
          ======================================== -->
@@ -1039,66 +1183,76 @@
       <!-- ========================================
          Sessions Section
          ======================================== -->
-      <section class="section section--cream" id="sessions">
+      <section
+        class="section section--cream"
+        id="sessions"
+        aria-labelledby="sessions-heading"
+      >
         <div class="container">
-          <div class="section-header">
-            <h2>Our Sessions</h2>
+          <header class="section-header">
+            <h2 id="sessions-heading">Our Sessions</h2>
             <p class="lead">
               Counselling can help make sense of what may be bothering you – by
               offering a non-judgemental space to explore feelings and emotions,
               without agenda.
             </p>
-          </div>
+          </header>
 
-          <div class="services__grid">
-            <div class="service-card">
-              <div class="service-card__icon">💭</div>
+          <div class="services__grid" role="list">
+            <article class="service-card" role="listitem">
+              <div class="service-card__icon" aria-hidden="true">💭</div>
               <h3 class="service-card__title">What We Can Explore</h3>
-              <p>
-                Initially we will explore what has brought you to counselling –
-                this may include (but is not exhaustive):
-              </p>
-              <ul class="service-card__list">
-                <li>Anxiety &amp; Depression</li>
-                <li>Low mood &amp; Low self-esteem</li>
-                <li>Life changes &amp; Bereavement</li>
-                <li>Stress &amp; Redundancy</li>
-                <li>Historical trauma</li>
-                <li>Relationship breakdown</li>
-              </ul>
-            </div>
+              <div class="service-card__content">
+                <p>
+                  Initially we will explore what has brought you to counselling
+                  – this may include (but is not exhaustive):
+                </p>
+                <ul class="service-card__list">
+                  <li>Anxiety &amp; Depression</li>
+                  <li>Low mood &amp; Low self-esteem</li>
+                  <li>Life changes &amp; Bereavement</li>
+                  <li>Stress &amp; Redundancy</li>
+                  <li>Historical trauma</li>
+                  <li>Relationship breakdown</li>
+                </ul>
+              </div>
+            </article>
 
-            <div class="service-card">
-              <div class="service-card__icon">🤝</div>
+            <article class="service-card" role="listitem">
+              <div class="service-card__icon" aria-hidden="true">🤝</div>
               <h3 class="service-card__title">How We Work Together</h3>
-              <p>
-                We can work together for as long, or as short as you would like
-                – but sessions tend to be on the same day and at the same time
-                weekly, or bi-weekly. Shift work can be navigated.
-              </p>
-              <p>
-                Counselling may often touch upon issues that are emotionally
-                sensitive. Tears can be another way of communicating how deeply
-                your emotions are. I always have tissues readily available in my
-                counselling room.
-              </p>
-            </div>
+              <div class="service-card__content">
+                <p>
+                  We can work together for as long, or as short as you would
+                  like – but sessions tend to be on the same day and at the same
+                  time weekly, or bi-weekly. Shift work can be navigated.
+                </p>
+                <p>
+                  Counselling may often touch upon issues that are emotionally
+                  sensitive. Tears can be another way of communicating how
+                  deeply your emotions are. I always have tissues readily
+                  available in my counselling room.
+                </p>
+              </div>
+            </article>
 
-            <div class="service-card">
-              <div class="service-card__icon">📍</div>
+            <article class="service-card" role="listitem">
+              <div class="service-card__icon" aria-hidden="true">📍</div>
               <h3 class="service-card__title">Location &amp; Access</h3>
-              <p>
-                I work via <strong>Zoom</strong> or
-                <strong>face to face</strong> from my office in
-                <strong>Wells-next-the-Sea</strong>.
-              </p>
-              <ul class="service-card__list">
-                <li>Free parking available</li>
-                <li>Good disabled access</li>
-                <li>Quiet, confidential space</li>
-                <li>Online sessions available</li>
-              </ul>
-            </div>
+              <div class="service-card__content">
+                <p>
+                  I work via <strong>Zoom</strong> or
+                  <strong>face to face</strong> from my office in
+                  <strong>Wells-next-the-Sea</strong>.
+                </p>
+                <ul class="service-card__list">
+                  <li>Free parking available</li>
+                  <li>Good disabled access</li>
+                  <li>Quiet, confidential space</li>
+                  <li>Online sessions available</li>
+                </ul>
+              </div>
+            </article>
           </div>
 
           <div class="pricing-table">
@@ -1217,22 +1371,34 @@
             </div>
 
             <div class="contact__form-wrapper">
-              <h3>Send a Message</h3>
+              <h3 id="contact-heading">Send a Message</h3>
               <form
                 class="contact-form"
                 action="mailto:lisawheelercounsellor@gmail.com"
                 method="post"
                 enctype="text/plain"
+                novalidate
+                aria-labelledby="contact-heading"
               >
                 <div class="form-group">
-                  <label class="form-label" for="name">Name</label>
+                  <label class="form-label" for="name"
+                    >Name <span class="required">*</span></label
+                  >
                   <input
                     type="text"
                     id="name"
                     name="name"
                     class="form-input"
                     required
+                    aria-required="true"
+                    aria-describedby="name-error"
                   />
+                  <div
+                    id="name-error"
+                    class="form-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
                 </div>
 
                 <div class="form-group">
@@ -1242,33 +1408,71 @@
                     id="phone"
                     name="phone"
                     class="form-input"
+                    aria-describedby="phone-error"
                   />
+                  <div
+                    id="phone-error"
+                    class="form-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="email">Email</label>
+                  <label class="form-label" for="email"
+                    >Email <span class="required">*</span></label
+                  >
                   <input
                     type="email"
                     id="email"
                     name="email"
                     class="form-input"
                     required
+                    aria-required="true"
+                    aria-describedby="email-error"
                   />
+                  <div
+                    id="email-error"
+                    class="form-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="message">Message</label>
+                  <label class="form-label" for="message"
+                    >Message <span class="required">*</span></label
+                  >
                   <textarea
                     id="message"
                     name="message"
                     class="form-textarea"
+                    rows="5"
                     required
+                    aria-required="true"
+                    aria-describedby="message-error"
                   ></textarea>
+                  <div
+                    id="message-error"
+                    class="form-error"
+                    role="alert"
+                    aria-live="polite"
+                  ></div>
                 </div>
 
-                <button type="submit" class="btn btn--primary form-submit">
+                <button
+                  type="submit"
+                  class="btn btn--primary form-submit"
+                  aria-describedby="form-status"
+                >
                   Send Message
                 </button>
+                <div
+                  id="form-status"
+                  class="form-status"
+                  role="status"
+                  aria-live="polite"
+                ></div>
               </form>
             </div>
           </div>
